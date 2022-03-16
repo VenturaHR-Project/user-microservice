@@ -1,7 +1,7 @@
 import mongoose, { Schema } from "mongoose"
 import { AccountType } from "../enum/AccountType"
 
-const UserSchema = new Schema({
+const schema = new Schema({
     name: {
         type: String,
         require: true
@@ -32,9 +32,24 @@ const UserSchema = new Schema({
         type: Boolean,
         required: true,
         default: true
+    },
+    cpf: {
+        type: String,
+        require: false,
+        trim: true 
+    },
+    cnpj: {
+        type: String,
+        require: false,
+        trim: true 
+    },
+    corporateName: {
+        type: String,
+        require: false,
+        trim: true 
     }
 })
 
-const User = mongoose.model("User", UserSchema)
+const User = mongoose.model("User", schema)
 
-export default User
+export { User }
