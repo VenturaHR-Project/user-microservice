@@ -1,7 +1,21 @@
-import mongoose, { Schema } from "mongoose"
+import mongoose, { Schema, Document } from "mongoose"
 import { AccountType } from "../enum/AccountType"
+import bcrypt from "bcryptjs"
 
-const schema = new Schema({
+interface IUser extends Document {
+    name: string
+    email: string
+    password: string
+    accountType: AccountType
+    phone: string
+    address: string
+    isActive: boolean
+    cpf?: string
+    cnpj?: string
+    corporateName?: string
+}
+
+const schema = new Schema<IUser>({
     name: {
         type: String,
         require: true
@@ -48,6 +62,20 @@ const schema = new Schema({
         require: false,
         trim: true 
     }
+})
+
+schema.pre("save", function (next) {
+    if (!this.isModified("password")) {
+        return next()
+    }
+
+    bcrypt.hash(this.password, 10, (err, hash) => {
+        if (err) {
+            return next(err)
+        }
+        this.password = hash
+        next()
+    })
 })
 
 const User = mongoose.model("User", schema)
