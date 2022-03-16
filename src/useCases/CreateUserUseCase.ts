@@ -1,4 +1,5 @@
 import { IUserRepository } from "../repository/IUserRepository"
+import { AppError } from "../utils/error/AppError"
 import { ICreateUserRequestDTO } from "./ICreateUserRequestDTO"
 
 export class CreateUserUseCase {
@@ -9,14 +10,14 @@ export class CreateUserUseCase {
     async execute(data: ICreateUserRequestDTO) {
         const userAlreadyExists = await this.repository.findByEmail(data.email)
 
-        if(userAlreadyExists) {
-            throw new Error(`User already exists!`)
+        if (userAlreadyExists) {
+            throw new AppError(409, "User already exists")
         }
 
         try {
             await this.repository.save(data)
         } catch (err) {
-            throw new Error(`An unexpected error occurred: ${err}`)
+            throw new AppError(400, "An unexpected error occurred")
         }   
     }
 }
