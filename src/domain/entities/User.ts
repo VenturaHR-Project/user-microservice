@@ -18,7 +18,8 @@ interface IUser extends Document {
 const schema = new Schema<IUser>({
     name: {
         type: String,
-        require: true
+        require: true,
+        trim: true
     },
     email: {
         type: String,
@@ -28,7 +29,8 @@ const schema = new Schema<IUser>({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     accountType: {
         type: AccountType,
@@ -36,11 +38,13 @@ const schema = new Schema<IUser>({
     },
     phone: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     address: {
         type: String,
-        required: true
+        required: true,
+        trim: true
     },
     isActive: {
         type: Boolean,
@@ -50,7 +54,7 @@ const schema = new Schema<IUser>({
     cpf: {
         type: String,
         require: false,
-        trim: true 
+        trim: true
     },
     cnpj: {
         type: String,
