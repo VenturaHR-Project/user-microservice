@@ -4,7 +4,7 @@ import { ICreateUserRequestDTO } from "../../useCases/createUser/ICreateUserRequ
 import { IUserRepository } from "../IUserRepository"
 
 export class UserRepository implements IUserRepository {
-    async findByEmail(email: string): Promise<Document> {
+    async fetchUsersByEmail(email: string): Promise<Document> {
         const response = await User.findOne({ email })
         return response
     }
