@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose"
 import { AccountType } from "../enum/AccountType"
-import bcrypt from "bcryptjs"
+import { Bcrypt } from "../../utils/cryptography/bcrypt"
 
 interface IUser extends Document {
     name: string
@@ -64,18 +64,13 @@ const schema = new Schema<IUser>({
     }
 })
 
-schema.pre("save", function (next) {
-    if (!this.isModified("password")) {
-        return next()
-    }
+schema.pre("save", async function (next) {
+    const salt = 12
+    const bcrypt = new Bcrypt(salt)
+    const passwordHash = await bcrypt.hash(this.password)
 
-    bcrypt.hash(this.password, 10, (err, hash) => {
-        if (err) {
-            return next(err)
-        }
-        this.password = hash
-        next()
-    })
+    this.password = passwordHash
+    next()
 })
 
 const User = mongoose.model("User", schema)
