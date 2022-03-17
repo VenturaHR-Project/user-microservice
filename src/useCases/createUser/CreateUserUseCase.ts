@@ -1,5 +1,5 @@
-import { IUserRepository } from "../repository/IUserRepository"
-import { AppError } from "../utils/error/AppError"
+import { IUserRepository } from "../../repository/IUserRepository"
+import { AppError } from "../../utils/error/AppError"
 import { ICreateUserRequestDTO } from "./ICreateUserRequestDTO"
 
 export class CreateUserUseCase {

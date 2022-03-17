@@ -1,6 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose"
+import { Bcrypt } from "../../utils/cryptography/Bcrypt"
 import { AccountType } from "../enum/AccountType"
-import { Bcrypt } from "../../utils/cryptography/bcrypt"
 
 interface IUser extends Document {
     name: string

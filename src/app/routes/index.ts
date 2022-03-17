@@ -1,5 +1,5 @@
 import { Router } from "express"
-import { createUserController } from "../../useCases"
+import { createUserController } from "../../useCases/createUser"
 
 const routes = Router()
 

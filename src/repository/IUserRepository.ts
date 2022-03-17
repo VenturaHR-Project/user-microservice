@@ -1,4 +1,4 @@
-import { ICreateUserRequestDTO } from '../useCases/ICreateUserRequestDTO'
+import { ICreateUserRequestDTO } from '../useCases/createUser/ICreateUserRequestDTO'
 
 export interface IUserRepository {
     findByEmail(email: string): Promise<Document>

@@ -1,4 +1,4 @@
-import { AccountType } from "../domain/enum/AccountType"
+import { AccountType } from "../../domain/enum/AccountType"
 
 export interface ICreateUserRequestDTO {
     name: string
