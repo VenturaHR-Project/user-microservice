@@ -3,7 +3,7 @@ import { ICreateUserRequestDTO } from '../useCases/createUser/ICreateUserRequest
 import { IEditUserRequestDTO } from "../useCases/editUser/IEditUserRequestDTO"
 
 export interface IUserRepository {
-    fetchUsersByEmail(email: string): Promise<Document>
+    fetchUserByEmail(email: string): Promise<Document>
     save(data: ICreateUserRequestDTO): Promise<void>
     fetchUsers(): Promise<Document[]>
     update(data: IEditUserRequestDTO): Promise<void>

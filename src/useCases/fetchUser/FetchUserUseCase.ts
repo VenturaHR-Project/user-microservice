@@ -9,7 +9,7 @@ export class FetchUserUseCase {
 
     async execute(data: IFetchUserRequestDTO) {
         try {
-            const user = await this.repository.fetchUsersByEmail(data.email)
+            const user = await this.repository.fetchUserByEmail(data.email)
             return user
         } catch (err) {
             throw new AppError(400, "An unexpected error occurred")

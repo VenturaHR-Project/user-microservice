@@ -5,7 +5,7 @@ import { IEditUserRequestDTO } from "../../useCases/editUser/IEditUserRequestDTO
 import { IUserRepository } from "../IUserRepository"
 
 export class UserRepository implements IUserRepository {
-    async fetchUsersByEmail(email: string): Promise<Document> {
+    async fetchUserByEmail(email: string): Promise<Document> {
         const response = await User.findOne({ email })
         return response
     }
