@@ -10,6 +10,7 @@ export class Database {
             useNewUrlParser: true,
             useUnifiedTopology: true,
             useCreateIndex: true,
+            useFindAndModify: false
         });
         this.logger()
     }
