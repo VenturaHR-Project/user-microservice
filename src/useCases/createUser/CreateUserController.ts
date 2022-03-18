@@ -1,7 +1,7 @@
 import { CreateUserUseCase } from "./CreateUserUseCase"
 import { Request, Response } from "express"
 import { AppError } from "../../utils/error/AppError"
-import { json } from "body-parser"
+
 export class CreateUserController {
     constructor(
         private createUserUseCase: CreateUserUseCase
