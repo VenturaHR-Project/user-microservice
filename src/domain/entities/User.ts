@@ -1,5 +1,6 @@
 import mongoose, { Schema, Document } from "mongoose"
 import { Bcrypt } from "../../utils/cryptography/Bcrypt"
+import { BcryptConstants } from "../../utils/cryptography/constants/BcryptConstants"
 import { AccountType } from "../enum/AccountType"
 
 interface IUser extends Document {
@@ -13,6 +14,9 @@ interface IUser extends Document {
     cpf?: string
     cnpj?: string
     corporateName?: string
+
+    generateHash(password: string): Promise<string>
+    validateIfObjectIdIsValid(id: string): Promise<boolean>
 }
 
 const schema = new Schema<IUser>({
@@ -69,13 +73,21 @@ const schema = new Schema<IUser>({
 })
 
 schema.pre("save", async function (next) {
-    const salt = 12
-    const bcrypt = new Bcrypt(salt)
+    const bcrypt = new Bcrypt()
     const passwordHash = await bcrypt.hash(this.password)
 
     this.password = passwordHash
     next()
 })
+
+schema.methods.generateHash = async function(password: string): Promise<string> {
+    const bcrypt = new Bcrypt(BcryptConstants.salt)
+    return bcrypt.hashSync(password)
+}
+
+schema.methods.validateIfObjectIdIsValid = async function(id: string): Promise<boolean> {
+    return mongoose.Types.ObjectId.isValid(id)
+}
 
 const User = mongoose.model("User", schema)
 
