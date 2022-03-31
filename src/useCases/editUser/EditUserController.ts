@@ -9,10 +9,10 @@ export class EditUserController {
 
     async handle(request: Request, response: Response): Promise<Response | void> {
         const { _id } = request.params
-        const { name, address, phone, password } = request.body
+        const { name, address, phone } = request.body
 
         try {
-            await this.editUserUseCase.execute({ _id, name, address, phone, password })
+            await this.editUserUseCase.execute({ _id, name, address, phone })
             return response.status(200).send()
         } catch (err) {
             if (err instanceof AppError) {

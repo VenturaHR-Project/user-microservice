@@ -1,6 +1,6 @@
 import mongoose from "mongoose"
 
-export class Database {
+export class MongoDB {
     private mongoURI = process.env.MONGO_URI || ""
 
     constructor() { }

@@ -7,12 +7,12 @@ import { IUserRepository } from "../IUserRepository"
 
 export class UserRepository implements IUserRepository {
     async fetchUsers(): Promise<Document[]> {
-        const response = await User.find().select('-password')
+        const response = await User.find()
         return response
     }
     
-    async fetchUserByEmail(email: string): Promise<Document> {
-        const response = await User.findOne({ email })
+    async fetchUserById(_id: string): Promise<Document> {
+        const response = await User.findOne({ _id })
         return response
     }
 
@@ -26,16 +26,12 @@ export class UserRepository implements IUserRepository {
         await user.save()
     }
 
-    async update({ _id, name, address, phone, password }: IEditUserRequestDTO): Promise<void> {
-        const user = new User()
-
-        password = await user.generateHash(password)
+    async update({ _id, name, address, phone }: IEditUserRequestDTO): Promise<void> {
         await User.findByIdAndUpdate(_id, {
             $set: {
                 name,
                 address,
                 phone,
-                password,
             },
         })
     }

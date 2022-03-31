@@ -1,12 +1,9 @@
-import mongoose, { Schema, Document } from "mongoose"
-import { Bcrypt } from "../../utils/cryptography/Bcrypt"
-import { BcryptConstants } from "../../utils/cryptography/constants/BcryptConstants"
+import mongoose, { Document, Schema } from "mongoose"
 import { AccountType } from "../enum/AccountType"
 
 interface IUser extends Document {
+    uid: string
     name: string
-    email: string
-    password: string
     accountType: AccountType
     phone: string
     address: string
@@ -15,25 +12,18 @@ interface IUser extends Document {
     cnpj?: string
     corporateName?: string
 
-    generateHash(password: string): Promise<string>
     validateIfObjectIdIsValid(id: string): Promise<boolean>
 }
 
 const schema = new Schema<IUser>({
+    uid: {
+        type: String,
+        require: true,
+        trim: true
+    },
     name: {
         type: String,
         require: true,
-        trim: true
-    },
-    email: {
-        type: String,
-        require: true,
-        unique: true,
-        trim: true
-    },
-    password: {
-        type: String,
-        required: true,
         trim: true
     },
     accountType: {
@@ -71,19 +61,6 @@ const schema = new Schema<IUser>({
         trim: true 
     }
 })
-
-schema.pre("save", async function (next) {
-    const bcrypt = new Bcrypt()
-    const passwordHash = await bcrypt.hash(this.password)
-
-    this.password = passwordHash
-    next()
-})
-
-schema.methods.generateHash = async function(password: string): Promise<string> {
-    const bcrypt = new Bcrypt(BcryptConstants.salt)
-    return bcrypt.hashSync(password)
-}
 
 schema.methods.validateIfObjectIdIsValid = async function(id: string): Promise<boolean> {
     return mongoose.Types.ObjectId.isValid(id)

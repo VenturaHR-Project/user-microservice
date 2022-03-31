@@ -3,5 +3,4 @@ export interface IEditUserRequestDTO {
     name: string
     address: string
     phone: string
-    password: string
 }

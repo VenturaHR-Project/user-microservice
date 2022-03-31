@@ -15,7 +15,7 @@ routes.get("/users", (request, response) => {
     return fetchUsersController.handle(request, response)
 })
 
-routes.get("/users/:email", (request, response) => {
+routes.get("/users/:_id", (request, response) => {
     return fetchUserController.handle(request, response)
 })
 

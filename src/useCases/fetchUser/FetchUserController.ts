@@ -8,10 +8,10 @@ export class FetchUserController {
     ) { }
 
     async handle(request: Request, response: Response): Promise<Response | void> {
-        const { email } = request.params
+        const { _id } = request.params
 
         try {
-            const user = await this.fetchUserUseCase.execute({ email })
+            const user = await this.fetchUserUseCase.execute({ _id })
 
             if (!user) {
                 response.status(404).json({ message: "User not found" })

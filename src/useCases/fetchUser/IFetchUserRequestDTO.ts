@@ -1,3 +1,3 @@
 export interface IFetchUserRequestDTO {
-    email: string
+    _id: string
 }
