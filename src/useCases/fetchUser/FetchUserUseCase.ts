@@ -8,11 +8,6 @@ export class FetchUserUseCase {
     ) { }
 
     async execute({ _id }: IFetchUserRequestDTO) {
-        // const hasUser = await this.repository.validateIfUserAlreadyExists(_id)
-
-        // if (!hasUser) {
-        //     throw new AppError(404, "User not found")
-        // }
 
         try {
             const user = await this.repository.fetchUserById(_id)
