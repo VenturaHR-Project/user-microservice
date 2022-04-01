@@ -1,3 +1,4 @@
+import { UserFactory } from "../../domain/entities/User/UserFactory"
 import { IUserRepository } from "../../repository/IUserRepository"
 import { AppError } from "../../utils/error/AppError"
 import { ICreateUserRequestDTO } from "./ICreateUserRequestDTO"
@@ -9,7 +10,8 @@ export class CreateUserUseCase {
 
     async execute(data: ICreateUserRequestDTO) {
         try {
-            await this.repository.save(data)
+            const user = UserFactory.createWith(data)
+            await this.repository.save(user)
         } catch (err) {
             throw new AppError(400, "An unexpected error occurred")
         }   
