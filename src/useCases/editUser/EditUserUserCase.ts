@@ -1,5 +1,5 @@
 import { IUserRepository } from "../../repository/IUserRepository"
-import { AppError } from "../../utils/error/AppError"
+import { AppError } from "../../shared/error/AppError"
 import { IEditUserRequestDTO } from "./IEditUserRequestDTO"
 
 export class EditUserUseCase {

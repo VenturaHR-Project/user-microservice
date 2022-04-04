@@ -1,4 +1,4 @@
-import { AppError } from "../../utils/error/AppError"
+import { AppError } from "../../shared/error/AppError"
 import { ManageAccountStateUseCase } from "./ManageAccountStateUseCase"
 import { Request, Response } from "express"
 

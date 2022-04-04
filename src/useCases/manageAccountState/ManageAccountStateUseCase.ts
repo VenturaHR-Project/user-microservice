@@ -1,6 +1,6 @@
 import { AccountType } from "../../domain/enum/AccountType"
 import { IUserRepository } from "../../repository/IUserRepository"
-import { AppError } from "../../utils/error/AppError"
+import { AppError } from "../../shared/error/AppError"
 import { IManageAccountStateRequestDTO } from "./IManageAccountStateRequestDTO"
 
 export class ManageAccountStateUseCase {

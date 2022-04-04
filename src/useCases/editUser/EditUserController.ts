@@ -1,5 +1,5 @@
 import { Request, Response } from "express"
-import { AppError } from "../../utils/error/AppError"
+import { AppError } from "../../shared/error/AppError"
 import { EditUserUseCase } from "./EditUserUserCase"
 
 export class EditUserController {

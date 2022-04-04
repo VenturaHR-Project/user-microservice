@@ -1,5 +1,5 @@
 import { IUserRepository } from "../../repository/IUserRepository";
-import { AppError } from "../../utils/error/AppError";
+import { AppError } from "../../shared/error/AppError";
 
 export class FetchUsersUseCase {
     constructor(

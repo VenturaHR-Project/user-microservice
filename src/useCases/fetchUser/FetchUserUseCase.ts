@@ -1,5 +1,5 @@
 import { IUserRepository } from "../../repository/IUserRepository";
-import { AppError } from "../../utils/error/AppError";
+import { AppError } from "../../shared/error/AppError";
 import { IFetchUserRequestDTO } from "./IFetchUserRequestDTO";
 
 export class FetchUserUseCase {
