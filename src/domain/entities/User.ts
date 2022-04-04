@@ -1,5 +1,5 @@
 import mongoose, { Document, Schema } from "mongoose"
-import { AccountType } from "../../enum/AccountType"
+import { AccountType } from "../enum/AccountType"
 
 interface IUser extends Document {
     uid: string
@@ -68,4 +68,4 @@ schema.methods.validateIfObjectIdIsValid = async function(id: string): Promise<b
 
 const User = mongoose.model("User", schema)
 
-export { User, IUser }
+export { User }

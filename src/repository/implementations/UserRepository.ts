@@ -1,7 +1,8 @@
 import { Document } from "mongoose"
-import { IUser, User } from "../../domain/entities/User/User"
-import { UserFactory } from "../../domain/entities/User/UserFactory"
+import { User } from "../../domain/entities/User"
+import { UserFactory } from "../../domain/entities/UserFactory"
 import { AccountType } from "../../domain/enum/AccountType"
+import { ICreateUserRequestDTO } from "../../useCases/createUser/ICreateUserRequestDTO"
 import { IEditUserRequestDTO } from "../../useCases/editUser/IEditUserRequestDTO"
 import { IUserRepository } from "../IUserRepository"
 
@@ -21,8 +22,9 @@ export class UserRepository implements IUserRepository {
         return response
     }
 
-    async save(user: IUser): Promise<void> {
-        await user.save()
+    async save(user: ICreateUserRequestDTO): Promise<ICreateUserRequestDTO> {
+        const response = await User.create(user)
+        return response
     }
 
     async update({ _id, name, address, phone }: IEditUserRequestDTO): Promise<void> {
