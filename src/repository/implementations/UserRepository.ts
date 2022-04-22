@@ -12,8 +12,8 @@ export class UserRepository implements IUserRepository {
         return response
     }
     
-    async fetchUserById(_id: string): Promise<Document> {
-        const response = await User.findOne({ _id })
+    async fetchUserByUID(uid: string): Promise<Document> {
+        const response = await User.findOne({ uid })
         return response
     }
 

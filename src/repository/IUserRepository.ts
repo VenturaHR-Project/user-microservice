@@ -5,7 +5,7 @@ import { IEditUserRequestDTO } from "../useCases/editUser/IEditUserRequestDTO"
 
 export interface IUserRepository {
     fetchUsers(): Promise<Document[]>
-    fetchUserById(_id: string): Promise<Document>
+    fetchUserByUID(uid: string): Promise<Document>
     fetchUserAccountType(_id: string): Promise<AccountType>
     save(data: ICreateUserRequestDTO): Promise<ICreateUserRequestDTO>
     update(data: IEditUserRequestDTO): Promise<void>

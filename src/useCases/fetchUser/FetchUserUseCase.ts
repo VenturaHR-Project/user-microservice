@@ -7,10 +7,10 @@ export class FetchUserUseCase {
         private repository: IUserRepository
     ) { }
 
-    async execute({ _id }: IFetchUserRequestDTO) {
+    async execute({ uid }: IFetchUserRequestDTO) {
 
         try {
-            const user = await this.repository.fetchUserById(_id)
+            const user = await this.repository.fetchUserByUID(uid)
             return user
         } catch (err) {
             throw new AppError(400, "An unexpected error occurred")
